@@ -1,0 +1,3 @@
+[submodule "digibyte_subsidy"]
+	path = digibyte_subsidy
+	url = https://github.com/ilsawa/digibyte_subsidy
