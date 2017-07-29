@@ -41,7 +41,7 @@ To use P2Pool, you must be running your own local myriadcoind. For standard conf
 
     python run_p2pool.py --net digibyte
 
-To make your node accessible from the internet, open the following ports on your router (both the worker port and peer-2-peer port please!): Worker Port = 5026; Peer-2-Peer Port = 5027
+To make your node accessible from the internet, open the following ports on your router (both the worker port and peer-2-peer port please!): Worker Port = 5027; Peer-2-Peer Port = 5026
 
 Run for additional options:
 
