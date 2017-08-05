@@ -13,7 +13,7 @@ MIN_TARGET=0
 MAX_TARGET=2**256//2**20 - 1
 PERSIST=True
 WORKER_PORT=5027
-BOOTSTRAP_ADDRS='crypto.office-on-the.net p2p-spb.xyz sha.dgb.crabs.pro'.split(' ')
+BOOTSTRAP_ADDRS='crypto.office-on-the.net p2p-spb.xyz sha.dgb.crabs.pro tv-msk.mine.nu'.split(' ')
 ANNOUNCE_CHANNEL='#p2pool-dgb-sha256'
 VERSION_CHECK=lambda v: True
 VERSION_WARNING=lambda v: 'Upgrade DigiByte >=6.14.2!' if v < 70015 else None
