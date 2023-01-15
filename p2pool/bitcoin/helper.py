@@ -14,7 +14,7 @@ def check(bitcoind, net):
         print >>sys.stderr, "    Check failed! Make sure that you're connected to the right bitcoind with --bitcoind-rpc-port!"
         raise deferral.RetrySilentlyException()
     
-    version_check_result = net.VERSION_CHECK((yield bitcoind.rpc_getinfo())['version'])
+    version_check_result = net.VERSION_CHECK((yield bitcoind.rpc_getnetworkinfo())['version'])
     if version_check_result == True: version_check_result = None # deprecated
     if version_check_result == False: version_check_result = 'Coin daemon too old! Upgrade!' # deprecated
     if version_check_result is not None:
@@ -104,9 +104,9 @@ def submit_block(block, ignore_failure, factory, bitcoind, bitcoind_work, net):
     submit_block_rpc(block, ignore_failure, bitcoind, bitcoind_work, net)
 
 @defer.inlineCallbacks
-def check_genesis_block(bitcoind, genesis_block_hash):
+def check_block_header(bitcoind, block_hash):
     try:
-        yield bitcoind.rpc_getblock(genesis_block_hash)
+        yield bitcoind.rpc_getblockheader(block_hash)
     except jsonrpc.Error_for_code(-5):
         defer.returnValue(False)
     else:

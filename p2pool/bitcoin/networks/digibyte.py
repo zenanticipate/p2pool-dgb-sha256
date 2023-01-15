@@ -11,8 +11,12 @@ P2P_PREFIX = 'fac3b6da'.decode('hex')
 P2P_PORT = 12025
 ADDRESS_VERSION = 30
 RPC_PORT = 14023
+#RPC_CHECK = defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+#            (yield helper.check_genesis_block(bitcoind, '7497ea1b465eb39f1c8f507bc877078fe016d6fcb6dfad3a64c98dcc6e1e8496'))
+#        ))
 RPC_CHECK = defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            (yield helper.check_genesis_block(bitcoind, '7497ea1b465eb39f1c8f507bc877078fe016d6fcb6dfad3a64c98dcc6e1e8496'))
+            (yield helper.check_block_header(bitcoind, '7497ea1b465eb39f1c8f507bc877078fe016d6fcb6dfad3a64c98dcc6e1e8496')) and # genesis block
+            (yield bitcoind.rpc_getblockchaininfo())['chain'] != 'test'
         ))
 SUBSIDY_FUNC = lambda height: __import__('digibyte_subsidy').GetBlockBaseValue(height)
 POW_FUNC=data.hash256
